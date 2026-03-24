@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.next/
+.poker-state.json

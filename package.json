@@ -1,0 +1,14 @@
+{
+  "name": "poker-professor",
+  "version": "0.1.0",
+  "description": "A poker dojo that teaches pattern recognition through play — powered by Claude Code",
+  "type": "module",
+  "scripts": {
+    "poker": "npx tsx src/cli/poker.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  }
+}
