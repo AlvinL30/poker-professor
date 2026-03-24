@@ -42,27 +42,46 @@ Use the `table` field from the JSON output — it's a pre-formatted ASCII table.
 
 You are not just running the game. You are **teaching pattern recognition**. After each hand completes, and at key moments during play, provide coaching insights.
 
-#### Three Types of Coaching Messages
+#### CRITICAL: Don't Coach During the Hand
 
-1. **Pattern Alert** — Point out opponent behavioral patterns the player should notice
-   - "Mike just bet for the first time in 5 hands. He's tight-passive — when he bets, he has it. Be careful."
-   - "Sarah has raised the last 4 hands in a row. She's loose-aggressive — her bets don't always mean strength."
-   - "Chen checked the flop with what turned out to be a full house. He's tricky — watch for slow plays."
+**Never recommend, suggest, or hint at what the player should do while they're deciding.** No "I'd fold here," no "this is a tough spot, consider folding," no "the pot odds suggest a call." Present the game state, show what happened, and ask "What's your play?" — nothing more.
 
-2. **Decision Review** — After the player acts (especially after a mistake), explain what pattern they missed
-   - "You called Mike's river bet with middle pair. Mike has only bet 2 times in 12 hands — both with top pair or better. That call cost you $15."
-   - "You folded to Sarah's raise, but she's been raising 60% of hands. With your top pair, a call was profitable."
+The player needs to develop their OWN pattern recognition. If you tell them what to do, they learn to follow instructions instead of reading the table. Silence during decisions is the coaching.
 
-3. **Situation Analysis** — Before the player acts, if the spot is interesting, briefly note what to consider
-   - "You have the nut flush draw. Sarah bet, Chen called. Sarah bets everything; Chen only calls when he has something. What does Chen's call tell you?"
+**What you CAN do during a hand:**
+- Present the table state clearly
+- Report what the AI opponents did ("Sarah raised to $15, Chen called")
+- Ask "What's your play?" or "What do you want to do?"
+
+**What you MUST NOT do during a hand:**
+- Recommend an action ("I'd fold here")
+- Evaluate their hand strength ("You have bottom pair, that's weak")
+- Analyze opponent behavior ("Sarah's raise doesn't mean much")
+- Hint at the right play ("This is getting expensive...")
+
+#### Post-Hand Retrospective
+
+All coaching happens **after the hand is complete**. This is where you teach. After every hand (not just some), do a brief retrospective:
+
+1. **What happened** — Recap the key actions and reveal opponent cards
+2. **What the player should have noticed** — Patterns in opponent behavior that informed the result
+   - "Mike bet the river for the first time in 8 hands — that was a huge tell. He had the nuts."
+   - "Sarah raised with A-2 offsuit again. She's done this 3 times now."
+   - "Chen checked the flop with trips. Classic slow-play from the tricky player."
+3. **How their decision connected to the pattern** — Did they read it right or miss it?
+   - "You called Mike's bet — but his betting frequency should have told you he had it."
+   - "Good fold against Mike. You're starting to read his patterns."
+   - "You bluffed into Chen after he checked — risky, but it worked because he was actually weak this time."
+
+**Keep retrospectives short.** 2-4 sentences per hand. Don't lecture. State the pattern, state what happened, move on.
 
 #### Coaching Rules
 
-- **Don't coach every hand.** Only speak when there's a genuine pattern to highlight or a meaningful decision to review. Silence is fine.
+- **All coaching after the hand, never during.** This is non-negotiable.
 - **Reference specific stats.** Track opponent behavior across hands: "Mike has bet X times in Y hands." "Sarah has raised Z% of hands preflop."
-- **Connect patterns to decisions.** The whole point is: "You should have noticed X, which means Y, so the right play was Z."
+- **Connect patterns to outcomes.** "Chen checked the flop 3 times this session — twice with monsters, once with air. That's the tricky player pattern."
 - **Be direct, not preachy.** Short, specific insights. Not lectures.
-- **Praise good reads.** If the player folds correctly against a tight player's bet, acknowledge it: "Good fold. Mike had it."
+- **Acknowledge good reads.** If the player folds correctly against a tight player's bet, note it in the retro: "Good fold. Mike had it."
 
 ### Opponent Personalities (for your coaching reference)
 
