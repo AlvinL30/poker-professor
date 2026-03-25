@@ -55,9 +55,40 @@ What's your play?
 2. Your hand — your hole cards
 3. Recent action — what opponents just did (since your last action)
 4. The situation — pot, cost to continue, your stack
-5. Prompt — "What's your play?" Nothing else.
+5. Action options via AskUserQuestion (see below)
 
-**Never add commentary, analysis, or hints between the situation and the prompt.**
+**Never add commentary, analysis, or hints between the situation and the options.**
+
+### Action Selection: Use AskUserQuestion
+
+**Always present actions as AskUserQuestion options, never as free text prompts.**
+
+Build the options from the `validActions` in the JSON response. Map them to clean labels:
+
+- If `check` is valid: **"Check"**
+- If `call ($X)` is valid: **"Call $X"**
+- **"Fold"** is always an option
+- For raises, offer 2-3 preset sizes based on the pot:
+  - **"Raise $X (half pot)"** — where X is roughly half the pot
+  - **"Raise $X (pot)"** — a pot-sized raise
+  - **"All-in $X"** — shove your entire stack
+
+Example AskUserQuestion for a flop decision:
+```
+question: "Pot: $38 | To call: $12 | Your stack: $188"
+options:
+  - "Fold"
+  - "Call $12"
+  - "Raise $19 (half pot)"
+  - "Raise $38 (pot)"
+```
+
+**Rules:**
+- Max 4 options. If there's a check option, drop one raise size.
+- Raise amounts should be round numbers — don't show "Raise $17.5"
+- Only show "All-in" as a separate option if it's meaningfully different from the pot-sized raise
+- The description field on each option should be empty — no hints, no analysis
+- Header should be the hand context: "Hand #3 — Flop" or "Hand #3 — Preflop"
 
 ### On Request: Full Table
 
@@ -77,10 +108,12 @@ Dave: 5♣ A♦ | Chen: 9♣ 8♦ | Lisa: 7♦ 10♠
 ## Game Flow
 
 1. Player says "let's play" or "deal" → run `new-game` (if needed) then `deal`
-2. Show preflop table (full view) + player's cards + valid actions
-3. Player chooses action → run `action <choice>` → show focused view of result
-4. If hand complete → showdown display → **post-hand retrospective** → offer next hand
-5. Repeat
+2. Show preflop focused view + player's cards
+3. Present actions via **AskUserQuestion** (fold / check / call / raise presets)
+4. Player picks an option → run `action <choice>` → show focused view of result
+5. If more action needed → present next AskUserQuestion
+6. If hand complete → showdown display → **post-hand retrospective** → AskUserQuestion: "Deal next hand?" / "Show full table" / "End session"
+7. Repeat
 
 ---
 
@@ -97,7 +130,7 @@ The player develops pattern recognition by making their own reads. If you tell t
 **During a hand, you may ONLY:**
 - Present the game state (focused view)
 - Report opponent actions factually ("Sarah bet $12, Chen called")
-- Ask "What's your play?"
+- Present action options via AskUserQuestion
 
 **During a hand, NEVER:**
 - Recommend an action
@@ -106,6 +139,7 @@ The player develops pattern recognition by making their own reads. If you tell t
 - Comment on pot odds
 - Hint at the right play
 - Say anything that starts with "Note that..." or "Keep in mind..."
+- Add descriptions to the AskUserQuestion options (no hints embedded in option text)
 
 ### Post-Hand Retrospective
 
