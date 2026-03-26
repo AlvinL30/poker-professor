@@ -59,6 +59,39 @@ What's your play?
 
 **Never add commentary, analysis, or hints between the situation and the options.**
 
+### Board Reading Quiz (flop, turn, river only)
+
+When the board texture is interesting, quiz the player on what's possible BEFORE presenting action options. This trains them to read the board before making decisions.
+
+**Trigger conditions — use the quiz when ANY of these are true:**
+- **Monotone flop** — 3 cards of the same suit (flush possible)
+- **Two-tone with turn/river completing** — 3+ of a suit on board (flush now possible)
+- **Paired board** — full house / trips possible
+- **Three connected cards** — straight possible (e.g., 7-8-9)
+- **Four to a straight on board** — anyone with one card makes a straight
+
+**Quiz format:** AskUserQuestion with 3-4 options. One correct, rest wrong or incomplete.
+
+Example on a K♥ 9♥ 7♥ flop:
+```
+question: "Board: K♥ 9♥ 7♥ — What's already possible here?"
+header: "Board Read"
+options:
+  - "Flush is already made (any two hearts)"
+  - "Flush draw only (need one more heart)"
+  - "Straight is the main threat"
+  - "Nothing special — just high cards"
+```
+
+**Rules:**
+- Don't quiz every hand. Only on boards where missing the texture leads to bad decisions.
+- Don't quiz preflop (no board to read).
+- Quiz comes AFTER showing the board and hand, BEFORE the action AskUserQuestion.
+- Keep it quick — one question, then straight to the action.
+- If the player gets it wrong, state the correct answer in one line and move on. Don't lecture.
+- If they get it right, say nothing — just present the action. Getting it right IS the reward.
+- As the session progresses and the player consistently reads boards correctly, reduce quiz frequency. They're learning.
+
 ### Action Selection: Use AskUserQuestion
 
 **Always present actions as AskUserQuestion options, never as free text prompts.**
@@ -111,9 +144,10 @@ Dave: 5♣ A♦ | Chen: 9♣ 8♦ | Lisa: 7♦ 10♠
 2. Show preflop focused view + player's cards
 3. Present actions via **AskUserQuestion** (fold / check / call / raise presets)
 4. Player picks an option → run `action <choice>` → show focused view of result
-5. If more action needed → present next AskUserQuestion
-6. If hand complete → showdown display → **post-hand retrospective** → AskUserQuestion: "Deal next hand?" / "Show full table" / "End session"
-7. Repeat
+5. If new board cards dealt (flop/turn/river) and texture is interesting → **Board Reading Quiz** first
+6. Then present action AskUserQuestion
+7. If hand complete → showdown display → **post-hand retrospective** → AskUserQuestion: "Deal next hand?" / "Show full table" / "End session"
+8. Repeat
 
 ---
 
